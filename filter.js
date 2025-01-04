@@ -21,6 +21,14 @@ const people = [
   },
 ];
 
+const oldEnough = people.filter(person => person.age >= 21);
+console.log(oldEnough);
+
+// As filter() will always return array if we want o get the object itseld we need to provide index ...[0] in this case
+const paul = people.filter(person => person.name === "Paul")[0];
+
+console.log(paul);
+
 
 // Complex Filtering
 const students = [
@@ -55,3 +63,21 @@ const students = [
     ]
   },
 ];
+
+/* const candidates = students.filter(student => {
+  let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);
+  return strongSkills.length > 0;
+});
+console.log(candidates);
+*/
+
+// Callback fn
+const has5YeearExp = skill => skill.yrsExperience >= 5;
+// Callback fn
+const hasStrongSkills = student => student.skills.filter(has5YeearExp).length > 0;
+
+const candidates = students.filter(hasStrongSkills);
+console.log(candidates);
+
+const qualifiedName = candidates.map(candidates => candidates.name);
+console.log(qualifiedName);
